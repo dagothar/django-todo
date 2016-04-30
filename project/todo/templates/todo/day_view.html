@@ -3,7 +3,20 @@
 {% block title %}day view{% endblock title %}
 
 {% block content %}
-  {% for task in tasks %}
-    {{ task }}
-  {% endfor %}
+    {{ date }}
+    <!-- task list -->
+    <div class="panel-body">
+      <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item">
+          {% if task.status %}
+          <a href="#" class="glyphicon glyphicon-check"></a>
+          {% else %}
+          <a href="#" class="glyphicon glyphicon-unchecked"></a>
+          {% endif %}
+          {{ task.description }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 {% endblock content %}

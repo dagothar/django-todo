@@ -9,6 +9,9 @@ from .. import models
 class DayView(LoginRequiredMixin, ListView):
     """
     Single day view.
+
+    Context:
+        tasks: List of Tasks.
     """
     model = models.Task
     template_name = 'todo/day_view.html'
@@ -30,8 +33,13 @@ class DayView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """Returns a list of tasks of the logged in user for a given day."""
-        date = self.get_date()
         return models.Task.objects.filter(
             user__exact=self.request.user,
-            date__exact=date
+            date__exact=self.get_date()
         )
+
+    def get_context_data(self, **kwargs):
+        """Adds day view context objects."""
+        context = super(ListView, self).get_context_data(**kwargs)
+        context['date'] = self.get_date()
+        return context
