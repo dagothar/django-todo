@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.views.generic.edit import FormMixin
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
@@ -6,12 +7,15 @@ import datetime
 from .. import models
 
 
-class DayView(LoginRequiredMixin, ListView):
+class DayView(LoginRequiredMixin, FormMixin, ListView):
     """
     Single day view.
 
     Context:
-        tasks: List of Tasks.
+        tasks: A list of Tasks.
+        date: The current date.
+        prev_date: The previous day.
+        next_date: The next day.
     """
     model = models.Task
     template_name = 'todo/day_view.html'
@@ -41,5 +45,8 @@ class DayView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         """Adds day view context objects."""
         context = super(ListView, self).get_context_data(**kwargs)
-        context['date'] = self.get_date()
+        date = self.get_date()
+        context['date'] = date
+        context['prev_date'] = date - datetime.timedelta(days=1)
+        context['next_date'] = date + datetime.timedelta(days=1)
         return context

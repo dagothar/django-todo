@@ -19,6 +19,12 @@ urlpatterns = [
         {'template_name': 'todo/logout.html'},
         name='logout'
     ),
+    # register view
+    url(
+        r'^register',
+        views.RegisterView.as_view(),
+        name='register'
+    ),
     # today view, e.g.: todo/today
     url(
         r'^today',

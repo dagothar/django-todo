@@ -2,8 +2,21 @@
 
 {% block title %}day view{% endblock title %}
 
+{% block custom_nav %}
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/todo/{{ prev_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-left"></a>
+        </li>
+        <li>
+          <a href="/todo/{{ date|date:'Y/m/d' }}">{{ date|date:'Y-m-d' }}</a>
+        </li>
+        <li>
+          <a href="/todo/{{ next_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-right"></a>
+        </li>
+      </ul>
+{% endblock custom_nav %}
+
 {% block content %}
-    {{ date }}
     <!-- task list -->
     <div class="panel-body">
       <ul class="list-group">

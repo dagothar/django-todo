@@ -18,21 +18,23 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Todo</a>
+          <a class="navbar-brand" href="{% url 'today_view' %}">Todo</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="{% block nav_today %}{% endblock %}">
+          <!--<li class="{% block nav_today %}{% endblock %}">
             <a href="{% url 'today_view' %}">Today</a>
-          </li>
+          </li>-->
         </ul>
+        {% block custom_nav %}
+        {% endblock %}
         <ul class="nav navbar-nav pull-right">
           {% if user.is_authenticated %}
           <li>
-            <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
           </li>
           {% else %}
           <li>
-            <a href="{% url 'login' %}">Log in</a>
+            <a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
           </li>
           {% endif %}
         </ul>
