@@ -22,12 +22,18 @@
       <ul class="list-group">
         {% for task in tasks %}
         <li class="list-group-item">
+          <!-- task status -->
           {% if task.status %}
           <a href="#" class="glyphicon glyphicon-check"></a>
           {% else %}
           <a href="#" class="glyphicon glyphicon-unchecked"></a>
           {% endif %}
+
+          <!-- task description -->
           {{ task.description }}
+
+          <!-- edit -->
+          <a href="{{ request.path }}" class="glyphicon glyphicon-remove text-danger pull-right"></a>
         </li>
         {% endfor %}
       </ul>
