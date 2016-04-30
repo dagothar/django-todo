@@ -22,9 +22,24 @@
 {% endblock custom_nav %}
 
 {% block content %}
+    <!-- progress bar -->
+    <div class="progress">
+      <div
+          class="progress-bar progress-bar-striped {% if progress == 100 %}progress-bar-success{% else %}active{% endif %}"
+          role="progressbar"
+          aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width:{{ progress }}%"
+          >
+          Completed: {{ progress }}%
+      </div>
+    </div>
+
     <!-- tasks -->
     <div class="panel-body">
       <ul class="list-group">
+
         <!-- new task form -->
         <li class="list-group-item list-group-form">
           <form method="post" action="#">
