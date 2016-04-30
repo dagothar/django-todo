@@ -5,21 +5,27 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 
 from .. import models
+from .. import forms
 
 
 class DayView(LoginRequiredMixin, FormMixin, ListView):
     """
     Single day view.
 
+    Presents a list of the tasks of the currently logged user for a given day.
+    Additionaly, a form is presented to add a new task.
+
     Context:
         tasks: A list of Tasks.
         date: The current date.
         prev_date: The previous day.
         next_date: The next day.
+        form: A new task form.
     """
     model = models.Task
     template_name = 'todo/day_view.html'
     context_object_name = 'tasks'
+    form_class = forms.TaskForm
 
     def get_date(self):
         """
