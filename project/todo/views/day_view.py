@@ -63,12 +63,19 @@ class DayView(LoginRequiredMixin, FormMixin, ListView, ProcessFormView):
         return context
 
     def get_success_url(self):
-        """Returns the current URL."""
+        """
+        Returns the current URL.
+
+        Overrides the get_success_url() method from FormMixin.
+        """
         return self.request.path
 
     def form_valid(self, form):
         """
         Handles processing if the form is valid.
+
+        Overrides form_valid() from FormMixin. Sets the currently logged User
+        on the newly created Task object.
         """
         new_task = form.save(commit=False)
         new_task.user = self.request.user
@@ -76,5 +83,9 @@ class DayView(LoginRequiredMixin, FormMixin, ListView, ProcessFormView):
         return super(LoginRequiredMixin, self).form_valid(form)
 
     def form_invalid(self, form):
-        """Handles processing if the form is invalid."""
+        """
+        Handles processing if the form is invalid.
+
+        Overrides form_invalid() from FormMixin.
+        """
         return self.get(self.request, form=form)

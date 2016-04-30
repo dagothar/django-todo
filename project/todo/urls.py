@@ -32,22 +32,34 @@ urlpatterns = [
         RedirectView.as_view(url='today'),
         name='home'
     ),
-    # today view, e.g.: todo/today
+    # today view, e.g.: /todo/today
     url(
         r'^today$',
         views.TodayView.as_view(),
         name='today_view'
     ),
-    # single day view, e.g.: todo/2016/04/30
+    # single day view, e.g.: /todo/2016/04/30
     url(
         r'^(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})$',
         views.DayView.as_view(),
         name='day_view'
     ),
-    # month view, e.g.: todo/2016/04
+    # month view, e.g.: /todo/2016/04
     url(
         r'^(?P<year>[0-9]{4})/(?P<month>[0-9]{2})$',
         views.MonthView.as_view(),
         name='month_view'
+    ),
+    # delete task, e.g. /todo/delete/1
+    url(
+        r'^delete/(?P<id>[0-9]+)',
+        views.delete_task,
+        name='delete_task'
+    ),
+    # toggle task status, e.g. /todo/toggle/1
+    url(
+        r'^toggle/(?P<id>[0-9]+)',
+        views.toggle_task_status,
+        name='toggle_task'
     ),
 ]

@@ -23,15 +23,21 @@
 
 {% block content %}
     <!-- tasks -->
-    {{ form.description.errors }}
     <div class="panel-body">
       <ul class="list-group">
         <!-- new task form -->
         <li class="list-group-item list-group-form">
           <form method="post" action="#">
             {% csrf_token %}
-            <div class="input-group">
-          	  <input id="description" class="form-control" type="text" name="description" autofocus="autofocus">
+            <div class="input-group {% if form.description.errors %}has-error{% endif %}">
+          	  <input
+                id="description"
+                class="form-control"
+                type="text"
+                name="description"
+                autofocus="autofocus"
+                placeholder="{%if form.description.errors %}You must provide a task description!{% else %}Your new task{% endif %}"
+              >
               <span class="input-group-btn">
               	<button class="btn btn-success" type="submit">Add task</button>
             	</span>
@@ -44,16 +50,18 @@
         <li class="list-group-item">
           <!-- task status -->
           {% if task.status %}
-          <a href="#" class="glyphicon glyphicon-check"></a>
+          <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-check"></a>
           {% else %}
-          <a href="#" class="glyphicon glyphicon-unchecked"></a>
+          <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-unchecked"></a>
           {% endif %}
 
           <!-- task description -->
+          {% if task.status %}<del>{% endif %}
           {{ task.description }}
+          {% if task.status %}</del>{% endif %}
 
           <!-- edit -->
-          <a href="{{ request.path }}" class="glyphicon glyphicon-remove text-danger pull-right"></a>
+          <a href="{% url 'delete_task' task.id %}" class="glyphicon glyphicon-remove text-danger pull-right"></a>
         </li>
         {% endfor %}
       </ul>
