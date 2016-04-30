@@ -1,9 +1,24 @@
 from django.conf.urls import url
+import django.contrib.auth.views as auth_views
 
 import views
 
 
 urlpatterns = [
+    # login view
+    url(
+        r'^login',
+        auth_views.login,
+        {'template_name': 'todo/login.html'},
+        name='login'
+    ),
+    # logout view
+    url(
+        r'^logout',
+        auth_views.logout,
+        {'template_name': 'todo/logout.html'},
+        name='logout'
+    ),
     # today view, e.g.: todo/today
     url(
         r'^today',

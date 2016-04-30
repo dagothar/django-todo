@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+{% load bootstrap %}
+
+{% block title %}Logged out{% endblock title %}
+
+{% block content %}
+    <div class="col-md-offset-4 col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          You have logged out successfully!
+        </div>
+        <div class="panel-body">
+          Click <a href="{% url 'login' %}">here</a> to log in again.
+        </div>
+      </div>
+    </div>
+{% endblock content %}

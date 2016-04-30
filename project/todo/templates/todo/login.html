@@ -1,0 +1,25 @@
+{% extends 'todo/base.html' %}
+{% load bootstrap %}
+
+{% block title %}Log in{% endblock title %}
+
+{% block content %}
+    <div class="col-md-offset-4 col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Log in
+        </div>
+        <div class="panel-body">
+          {% if form.errors %}
+          <span class="text-danger">Invalid username or password!</span>
+          {% endif %}
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <input type="hidden" value="{{ next }}" />
+            <input type="submit" value="Log in" />
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

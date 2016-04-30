@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load bootstrap %}
 <! DOCTYPE html >
 <html lang="en">
   <head>
@@ -23,6 +24,17 @@
           <li class="{% block nav_today %}{% endblock %}">
             <a href="{% url 'today_view' %}">Today</a>
           </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'logout' %}">Log out</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'login' %}">Log in</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
