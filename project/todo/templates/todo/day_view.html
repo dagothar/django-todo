@@ -1,9 +1,9 @@
 {% extends 'todo/base.html' %}
+{% load bootstrap %}
 
 {% block title %}day view{% endblock title %}
 
 {% block custom_nav %}
-        <ul class="nav navbar-nav col-md-4">
           <li>
             <a href="/todo/{{ prev_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-left"></a>
           </li>
@@ -19,15 +19,27 @@
           <li>
             <a href="/todo/{{ next_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-right"></a>
           </li>
-        </ul>
 {% endblock custom_nav %}
 
 {% block content %}
-    <!-- new task form -->
-    {{ form }}
-    <!-- task list -->
+    <!-- tasks -->
+    {{ form.description.errors }}
     <div class="panel-body">
       <ul class="list-group">
+        <!-- new task form -->
+        <li class="list-group-item list-group-form">
+          <form method="post" action="#">
+            {% csrf_token %}
+            <div class="input-group">
+          	  <input id="description" class="form-control" type="text" name="description" autofocus="autofocus">
+              <span class="input-group-btn">
+              	<button class="btn btn-success" type="submit">Add task</button>
+            	</span>
+            </div>
+          </form>
+        </li>
+
+        <!-- task list -->
         {% for task in tasks %}
         <li class="list-group-item">
           <!-- task status -->
