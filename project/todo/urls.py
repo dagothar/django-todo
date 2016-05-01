@@ -1,6 +1,7 @@
 from django.conf.urls import url
 import django.contrib.auth.views as auth_views
 from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 
 import views
 
@@ -25,6 +26,12 @@ urlpatterns = [
         r'^register$',
         views.RegisterView.as_view(),
         name='register'
+    ),
+    # register success view
+    url(
+        r'^register_success$',
+        TemplateView.as_view(template_name='todo/registration_successful.html'),
+        name='register_success'
     ),
     # main view, redirects to /today
     url(

@@ -10,7 +10,11 @@
           Register
         </div>
         <div class="panel-body">
-          
+          <form method="post" action="#">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <input type="submit" value="Register" />
+          </form>
         </div>
       </div>
     </div>
