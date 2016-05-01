@@ -87,6 +87,7 @@ class DayView(LoginRequiredMixin, FormMixin, ListView, ProcessFormView):
         """
         new_task = form.save(commit=False)
         new_task.user = self.request.user
+        new_task.date = self.get_date()
         new_task.save()
         return super(LoginRequiredMixin, self).form_valid(form)
 
