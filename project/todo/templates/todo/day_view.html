@@ -22,63 +22,74 @@
 {% endblock custom_nav %}
 
 {% block content %}
-    <!-- progress bar -->
-    <div class="progress">
-      <div
-          class="progress-bar progress-bar-striped {% if progress == 100 %}progress-bar-success{% else %}active{% endif %}"
-          role="progressbar"
-          aria-valuenow="{{ progress }}"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          style="width:{{ progress }}%"
-          >
-          Completed: {{ progress }}%
-      </div>
-    </div>
-
     <!-- tasks -->
     <div class="panel-body">
-      <ul class="list-group">
+
+      <!-- progress bar -->
+      <div class="progress">
+        <div
+            class="progress-bar progress-bar-striped {% if progress == 100 %}progress-bar-success{% else %}active{% endif %}"
+            role="progressbar"
+            aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width:{{ progress }}%"
+            >
+            Completed: {{ progress }}%
+        </div>
+      </div>
+
+      <table class="table col-md-12">
 
         <!-- new task form -->
-        <li class="list-group-item list-group-form">
-          <form method="post" action="#">
-            {% csrf_token %}
-            <div class="input-group {% if form.description.errors %}has-error{% endif %}">
-          	  <input
-                id="description"
-                class="form-control"
-                type="text"
-                name="description"
-                autofocus="autofocus"
-                placeholder="{%if form.description.errors %}You must provide a task description!{% else %}Your new task{% endif %}"
-              >
-              <span class="input-group-btn">
-              	<button class="btn btn-success" type="submit">Add task</button>
-            	</span>
-            </div>
-          </form>
-        </li>
+        <tr>
+          <td colspan="3">
+            <form method="post" action="#" style="display: inline; padding: 0">
+              {% csrf_token %}
+              <div class="input-group {% if form.description.errors %}has-error{% endif %}">
+            	  <input
+                  id="description"
+                  class="form-control"
+                  type="text"
+                  name="description"
+                  autofocus="autofocus"
+                  placeholder="{%if form.description.errors %}You must provide a task description!{% else %}Your new task{% endif %}"
+                >
+                <span class="input-group-btn">
+                	<button class="btn btn-success" type="submit">Add task</button>
+              	</span>
+              </div>
+            </form>
+          </td>
+        </tr>
 
         <!-- task list -->
         {% for task in tasks %}
-        <li class="list-group-item">
+        <tr>
           <!-- task status -->
-          {% if task.status %}
-          <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-check"></a>
-          {% else %}
-          <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-unchecked"></a>
-          {% endif %}
+          <td class="col-md-1">
+            {% if task.status %}
+            <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-check"></a>
+            {% else %}
+            <a href="{% url 'toggle_task' task.id %}" class="glyphicon glyphicon-unchecked"></a>
+            {% endif %}
+          </td>
 
           <!-- task description -->
-          {% if task.status %}<del>{% endif %}
-          {{ task.description }}
-          {% if task.status %}</del>{% endif %}
+          <td class="col-md-10">
+            {% if task.status %}<del>{% endif %}
+            {{ task.description }}
+            {% if task.status %}</del>{% endif %}
+          </td>
 
-          <!-- edit -->
-          <a href="{% url 'delete_task' task.id %}" class="glyphicon glyphicon-remove text-danger pull-right"></a>
-        </li>
+          <!-- task edit -->
+          <td class="col-md-1 text-right">
+            <a href="{% url 'delete_task' task.id %}" class="glyphicon glyphicon-remove text-danger"></a>
+          </td>
+        </tr>
         {% endfor %}
-      </ul>
+
+      </table>
+
     </div>
 {% endblock content %}
