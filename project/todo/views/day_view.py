@@ -46,7 +46,7 @@ class DayView(LoginRequiredMixin, FormMixin, ListView, ProcessFormView):
         """Calculates the percentage of completed tasks."""
         completed = self.object_list.filter(status__exact=True).count()
         total = len(self.object_list)
-        return int(100 * completed / total)
+        return int(100 * completed / total) if total > 0 else 0
 
     def get_context_data(self, **kwargs):
         """
@@ -58,6 +58,7 @@ class DayView(LoginRequiredMixin, FormMixin, ListView, ProcessFormView):
             prev_date: The previous day.
             next_date: The next day.
             form: A new task form.
+            progress: The percentage of completed tasks.
         """
         context = super(LoginRequiredMixin, self).get_context_data(**kwargs)
         date = self.get_date()

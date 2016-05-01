@@ -1,7 +1,7 @@
 {% extends 'todo/base.html' %}
 {% load bootstrap %}
 
-{% block title %}day view{% endblock title %}
+{% block title %}Tasks for {{ date|date:'Y/m/d' }}{% endblock title %}
 
 {% block custom_nav %}
           <li>
