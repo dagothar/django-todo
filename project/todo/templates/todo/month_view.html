@@ -9,16 +9,16 @@
       <div>
         <ul class="nav navbar-nav">
           <li>
-            <a href="/todo/{{ prev_month|date:'Y/m' }}" class="glyphicon glyphicon-menu-left"></a>
+            <a href="/todo/{{ prev_date|date:'Y/m' }}" class="glyphicon glyphicon-menu-left"></a>
+          </li>
+          <li>
+            <a href="/todo/{{ date|date:'Y/m' }}">{{ date|date:'b'|capfirst }}</a>
           </li>
           <li>
             <p class="navbar-text">{{ date|date:'Y' }}</p>
           </li>
           <li>
-            <a href="/todo/{{ month|date:'Y/m' }}">{{ date|date:'m' }}</a>
-          </li>
-          <li>
-            <a href="/todo/{{ next_month|date:'Y/m' }}" class="glyphicon glyphicon-menu-right"></a>
+            <a href="/todo/{{ next_date|date:'Y/m' }}" class="glyphicon glyphicon-menu-right"></a>
           </li>
         </ul>
       </div>

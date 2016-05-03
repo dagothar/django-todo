@@ -12,13 +12,13 @@
             <a href="/todo/{{ prev_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-left"></a>
           </li>
           <li>
-            <p class="navbar-text">{{ date|date:'Y' }}</p>
+            <a href="/todo/{{ date|date:'Y/m/d' }}">{{ date|date:'d' }}</a>
           </li>
           <li>
             <a href="/todo/{{ date|date:'Y/m' }}">{{ date|date:'m' }}</a>
           </li>
           <li>
-            <a href="/todo/{{ date|date:'Y/m/d' }}">{{ date|date:'d' }}</a>
+            <p class="navbar-text">{{ date|date:'Y' }}</p>
           </li>
           <li>
             <a href="/todo/{{ next_date|date:'Y/m/d' }}" class="glyphicon glyphicon-menu-right"></a>
