@@ -1,0 +1,16 @@
+{% extends 'todo/base.html' %}
+{% load bootstrap %}
+
+{% block title %}Tasks for {% endblock title %}
+
+{% block custom_nav %}
+{% endblock custom_nav %}
+
+{% block content %}
+    <!-- days -->
+    <div>
+
+      {{ calendar }}
+
+    </div>
+{% endblock content %}

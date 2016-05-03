@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load bootstrap %}
-<! DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -15,31 +15,27 @@
 
   <body>
     <!-- navigation -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default text">
       <div class="container">
-        <div class="navbar-header col-md-1">
+        <div class="navbar-header ">
           <a class="navbar-brand" href="{% url 'home' %}">Todo</a>
         </div>
-        <ul class="nav navbar-nav col-md-3">
+        <ul class="nav navbar-nav">
           <li class="{% block nav_today %}{% endblock %}">
             <a href="{% url 'today_view' %}">Today</a>
           </li>
         </ul>
-        <ul class="nav navbar-nav col-md-4">
-          {% block custom_nav %}
-          {% endblock %}
-        </ul>
-        <ul class="nav navbar-nav col-md-4">
+        <ul class="nav navbar-nav pull-right">
           {% if user.is_authenticated %}
-          <li class="pull-right">
+          <li>
             <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
           </li>
           {% else %}
-          <li class="pull-right">
-            <a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
-          </li>
-          <li class="pull-right">
+          <li>
             <a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Register</a>
+          </li>
+          <li>
+            <a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
           </li>
           {% endif %}
         </ul>

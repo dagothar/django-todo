@@ -24,3 +24,14 @@ li.list-group-form {
 li.list-group-form form {
  display: inline;
 }
+
+/* center navbar items */
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
