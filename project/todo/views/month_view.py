@@ -2,14 +2,15 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
-from calendar import HTMLCalendar
+
+from ..util import Calendar
 
 
-class TaskCalendar(HTMLCalendar):
-    def formatday(self, day, weekday):
-        return super.formatday(day, weekday)
-    pass
+class TaskCalendar(Calendar):
+    table_class = "table text-center"
+
+    def get_day_content(self, date):
+        return '<a href="#">{}</a>'.format(date.strftime('%d'))
 
 
 class MonthView(View):
@@ -21,8 +22,9 @@ class MonthView(View):
         year = int(kwargs['year'])
         month = int(kwargs['month'])
 
-        calendar = HTMLCalendar()
+        cal = TaskCalendar(year, month)
+
         ctx = {
-            'calendar': mark_safe(calendar.formatmonth(year, month))
+            'calendar': cal,
         }
         return render(request, 'todo/month_view.html', ctx)

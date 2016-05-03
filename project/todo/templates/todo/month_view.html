@@ -3,14 +3,27 @@
 
 {% block title %}Tasks for {% endblock title %}
 
-{% block custom_nav %}
-{% endblock custom_nav %}
-
 {% block content %}
-    <!-- days -->
-    <div>
+    <!-- navigation -->
+    <nav class="navbar navbar-default text-center">
+      <div>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/todo/{{ prev_month|date:'Y/m' }}" class="glyphicon glyphicon-menu-left"></a>
+          </li>
+          <li>
+            <p class="navbar-text">{{ date|date:'Y' }}</p>
+          </li>
+          <li>
+            <a href="/todo/{{ month|date:'Y/m' }}">{{ date|date:'m' }}</a>
+          </li>
+          <li>
+            <a href="/todo/{{ next_month|date:'Y/m' }}" class="glyphicon glyphicon-menu-right"></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-      {{ calendar }}
-
-    </div>
+    <!-- calendar -->
+    {{ calendar }}
 {% endblock content %}
