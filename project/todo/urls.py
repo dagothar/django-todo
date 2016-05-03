@@ -57,6 +57,12 @@ urlpatterns = [
         views.MonthView.as_view(),
         name='month_view'
     ),
+    # this month view, e.g.: /todo/this_month
+    url(
+        r'^this_month$',
+        views.ThisMonthView.as_view(),
+        name='this_month_view'
+    ),
     # delete task, e.g. /todo/delete/1
     url(
         r'^delete/(?P<id>[0-9]+)',

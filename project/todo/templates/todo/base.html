@@ -21,8 +21,11 @@
           <a class="navbar-brand" href="{% url 'home' %}">Todo</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="{% block nav_today %}{% endblock %}">
+          <li>
             <a href="{% url 'today_view' %}">Today</a>
+          </li>
+          <li>
+            <a href="{% url 'this_month_view' %}">This month</a>
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
