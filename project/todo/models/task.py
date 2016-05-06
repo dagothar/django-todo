@@ -13,6 +13,9 @@ class Task(models.Model):
         status (boolean): The status of the task: True - done or False - not done.
         description (str): The name of the task.
     """
+    class Meta:
+        app_label = 'todo'
+
     user = models.ForeignKey(User)
     date = models.DateField(default=timezone.now)
     status = models.BooleanField(default=False)
